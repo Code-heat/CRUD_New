@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Angular JS</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="javascripts/angular.min.js"></script>
+  <script type="text/javascript" src="javascripts/angular.js"></script>
+</head>
+<body ng-app="myApp">
+  <div class="container" ng-controller="myController">
+    <div class="col-md-12">
+      <a href="/logout"><i class="btn btn-danger glyphicon glyphicon-log-out" style="margin-left:1000px; margin-top:10px;"><b>&nbsp;logout</b></i></a>
+    </div>
+    <form class="form-group">
+      <p><%=user.name%></p>
+      <p><%=user.email%></p>
+      <p><%=user.password%></p>
+    	<h1>Form</h1>
+    	<label>Name :</label>
+    	<input class="form-control" type="text" ng-model="users.name" required="">
+    	<label>Roll No :</label>
+    	<input class="form-control" type="text" ng-model="users.rollno" required="">
+    	<label>Branch :</label>
+    	<input class="form-control" type="text" ng-model="users.branch" required="">
+    	<label>College :</label>
+    	<input class="form-control" type="text" ng-model="users.college" required="">
+    	<br>
+    	<button class="btn btn-info" ng-click="saveData(users)">Submit</button>
+    </form>
+    <br>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>S.No</th>
+          <th>Id</th>
+          <th>Name</th>
+          <th>Rollno</th>
+          <th>Branch</th>
+          <th>College</th>
+          <th>Edit</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="users in user">
+          <td>{{$index+1}}</td>
+          <td><span ng-hide="editUser">{{users._id}}</span>
+            <input class="form-control" type="text" ng-show="editUser" ng-model="users._id" ng-read-only="true"></td>
+          <td><span ng-hide="editUser">{{users.name}}</span>
+            <input class="form-control" type="text" ng-show="editUser" ng-model="users.name"></td>
+          <td><span ng-hide="editUser">{{users.rollno}}</span>
+            <input class="form-control" type="text" ng-show="editUser" ng-model="users.rollno"></td>
+          <td><span ng-hide="editUser">{{users.branch}}</span>
+            <input class="form-control" type="text" ng-show="editUser" ng-model="users.branch"></td>
+          <td><span ng-hide="editUser">{{users.college}}</span>
+            <input class="form-control" type="text" ng-show="editUser" ng-model="users.college"></td>
+          <td>
+            <i class="btn btn-primary glyphicon glyphicon-edit" ng-hide="editUser" ng-click="editData(); editUser = true"></i>
+            <i class="btn btn-success glyphicon glyphicon-ok" ng-show="editUser" ng-click="updateData(users); editUser = false"></i>
+          </td>
+          <td>
+            <i class="btn btn-danger glyphicon glyphicon-trash" ng-click="removeData(users)"></i>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>

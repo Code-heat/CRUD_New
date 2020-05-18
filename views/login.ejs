@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login/Signup</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="javascripts/angular.min.js"></script>
+	<script type="text/javascript" src="javascripts/loginsignup.js"></script>
+</head>
+<body ng-app="loginapp">
+	<div class="container">
+		<ul class="nav nav-tabs">
+			<li><a href="#login" data-toggle="tab">Login</a></li>
+			<li><a href="#signup" data-toggle="tab">Signup</a></li>
+		</ul>
+		<div class="tab-content">
+			<div id="login" class="tab tab-pane fade active in" ng-controller="loginController">
+				<div class="col-md-4 col-md-offset-4" style="border:1px solid black; margin-top:150px; box-shadow: 10px 10px 10px 10px; padding: 15px; border-radius:3%;">
+					<h1 class="text-center">Login</h1>
+					<form class="form-group">
+						<label>Email :</label>
+						<input class="form-control" type="email" ng-model="log.email" required="" autocomplete="off">
+						<label>Password :</label>
+						<input class="form-control" type="password" ng-model="log.password" required="" autocomplete="off">
+						<br>
+						<a href="/forgot" style="text-decoration:none;">Forgot Password ?</a>
+						<br>
+						<br>
+						<button ng-click="login(log)" class="btn btn-info form-control">Login</button>
+					</form>
+				</div>
+			</div>
+			<div id="signup" class="tab tab-pane fade" ng-controller="signupController">
+				<div class="col-md-4 col-md-offset-4" style="border:1px solid black; margin-top:150px; box-shadow: 10px 10px 10px 10px; padding: 15px; border-radius:3%;">
+					<h1 class="text-center">Signup</h1>
+					<form class="form-group">
+						<label>Username :</label>
+						<input class="form-control" type="text" ng-model="reg.name" required="" autocomplete="off">
+						<label>Email :</label>
+						<input class="form-control" type="email" ng-model="reg.email" required="" autocomplete="off">
+						<label>Password :</label>
+						<input class="form-control" type="password" ng-model="reg.password" required="" autocomplete="off">
+						<br>
+						<button ng-click="signup(reg)" class="btn btn-info">Signup</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
