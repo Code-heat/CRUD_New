@@ -6,6 +6,7 @@ var Cryptr = require('cryptr');
 var cryptr = new Cryptr('myTotalySecretKey');
 var moment = require('moment');
 var monk = require('monk');
+var QRCode = require('qrcode')
 var db = monk('localhost:27017/codeheat');
 var col = db.get('user');
 var signup = db.get('signup');
@@ -21,7 +22,9 @@ router.get('/home', function(req,res){
     res.redirect('/');
   }
 });
-
+router.get('/pdf', function(req,res){
+  res.render('pdf');
+});
 router.get('/', function(req,res){
   res.render('login');
 });
