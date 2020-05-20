@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Image Upload</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<div class="container">
+	  <form class="form-group" action="/imageupload" method="post" enctype="multipart/form-data">
+	  	<input class="form-control" type="file" name="image">
+	  	<br>
+	  	<br>
+	  	<input class="btn btn-info" type="submit" value="Save Image">
+	  </form>
+	  <br>
+	  <br>
+	  <p><%=a[1].image%></p>
+	  <img src="uploads/<%=a[1].image%>" height="200" width="200">
+	</div>
+</body>
+</html>

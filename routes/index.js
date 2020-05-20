@@ -7,9 +7,21 @@ var cryptr = new Cryptr('myTotalySecretKey');
 var moment = require('moment');
 var monk = require('monk');
 var QRCode = require('qrcode')
+var multer = require('multer');
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'public/uploads/')
+  },
+  filename: function (req, file, cb) {
+    cb(null,file.originalname)
+  }
+})
+ 
+var upload = multer({ storage: storage })
 var db = monk('localhost:27017/codeheat');
 var col = db.get('user');
 var signup = db.get('signup');
+var image = db.get('image');
 /* GET home page. */
 router.get('/home', function(req,res){
   if(req.session && req.session.user){
@@ -25,6 +37,13 @@ router.get('/home', function(req,res){
 router.get('/pdf', function(req,res){
   res.render('pdf');
 });
+
+router.get('/image', function(req,res){
+  image.find({}, function(err,docs){
+  res.render('image', {"a":docs});
+  })
+});
+
 router.get('/', function(req,res){
   res.render('login');
 });
@@ -202,5 +221,11 @@ router.post('/postbirthday', function(req,res){
   //     }
   //   });
   // }
+});
+
+router.post('/imageupload',upload.single('image'), function(req,res){
+  console.log(req.file);
+  image.insert({"image":req.file.originalname})
+  res.redirect('/image');
 });
 module.exports = router;
